@@ -2,19 +2,31 @@
   {
     "title": "LOCK YOUR GAZE",
     "artist": "MODE/D",
-    "cover": "assets/albumn_cover.png",
+    "cover": "assets/pixel-cover/lockyourgaze.png",
     "file": "audio/LOCK YOUR GAZE.mp3"
   },
   {
-    "title": "Dreamscape",
-    "artist": "Chiptune Cats",
-    "cover": "assets/albumn_cover.png",
-    "file": "audio/Dreamscape.mp3"
+    "title": "I Wanna Feel Your Love",
+    "artist": "Hatsune Miku, Kasane Teto & Saul David",
+    "cover": "assets/pixel-cover/iwannafeelyourlove.png",
+    "file": "audio/I Wanna Feel Your Love - 初音ミク × 重音テト × Saúl David - Saúl David (youtube).mp3"
   },
   {
-    "title": "Evening Glow",
-    "artist": "Retro Beats",
-    "cover": "assets/albumn_cover.png",
-    "file": "audio/Evening Glow.mp3"
+    "title": "Catch You Catch Me!",
+    "artist": "Hinata Megumi",
+    "cover": "assets/pixel-cover/catchyoucatchme.png",
+    "file": "audio/Cardcaptor Sakura OP 1 - Catch You Catch Me! Hinata Megumi - Antoko-rippa ꕥ Sakura Memories! (youtube).mp3"
+  },
+  {
+    "title": "Sakura Kiss",
+    "artist": "OURAN High School Host Club",
+    "cover": "assets/pixel-cover/sakurakiss.png",
+    "file": "audio/OHSHC- Sakura Kiss- full opening - pokemonmew95 (youtube).mp3"
+  },
+  {
+    "title": "My Secret",
+    "artist": "Saaya Mizuno",
+    "cover": "assets/pixel-cover/mysecret.png",
+    "file": "audio/Kaichou wa Maid-sama! OP - My Secret - Saaya Mizuno - Lyrics & Sub Español - Sandrii723 (youtube).mp3"
   }
 ]

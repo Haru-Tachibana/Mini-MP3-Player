@@ -19,52 +19,68 @@ async function loadSongs() {
 function updateUI() {
   const song = songs[currentIndex];
   albumDiv.style.backgroundImage = `url(${song.cover})`;
-  songInfo.textContent = `Now Play: ${song.title} - ${song.artist}`;
+  updateTextDisplay();
   audio.src = song.file;
 }
 
+function updateTextDisplay() {
+  const song = songs[currentIndex];
+  const songInfoElement = document.getElementById("song-info");
+  
+  if (isPlaying) {
+    // When playing: show scrolling marquee
+    songInfoElement.innerHTML = `<marquee behavior="scroll" direction="left">${song.title} - ${song.artist}</marquee>`;
+  } else {
+    // When stopped/paused: show static text aligned left
+    songInfoElement.innerHTML = `${song.title} - ${song.artist}`;
+  }
+}
+
 playBtn.onclick = () => {
-  // Add visual click feedback
-  playBtn.style.transform = 'scale(0.9)';
+  playBtn.style.transform = 'translate(-50%, -50%) translateY(1px)';
   setTimeout(() => {
-    playBtn.style.transform = '';
+    playBtn.style.transform = 'translate(-50%, -50%)';
   }, 100);
   
   if (!isPlaying) {
     audio.play();
     isPlaying = true;
-    playIcon.src = "assets/button_play_pause.png"; // You can create separate pause icon later
-    songInfo.textContent = `▶ Now Play: ${songs[currentIndex].title} - ${songs[currentIndex].artist}`;
+    playIcon.src = "assets/mp3-components/button_play_pause_trimmed.png";
+    updateTextDisplay(); // Update text to scrolling mode
   } else {
     audio.pause();
     isPlaying = false;
-    playIcon.src = "assets/button_play_pause.png"; // You can create separate play icon later
-    songInfo.textContent = `❚❚ Paused: ${songs[currentIndex].title} - ${songs[currentIndex].artist}`;
+    playIcon.src = "assets/mp3-components/button_play_pause_trimmed.png";
+    updateTextDisplay(); // Update text to static mode
   }
 };
 
 nextBtn.onclick = () => {
-  // Add visual click feedback
-  nextBtn.style.transform = 'scale(0.9)';
+  nextBtn.style.transform = 'translateY(-50%) translateY(1px)';
   setTimeout(() => {
-    nextBtn.style.transform = '';
+    nextBtn.style.transform = 'translateY(-50%)';
   }, 100);
   
   currentIndex = (currentIndex + 1) % songs.length;
   updateUI();
-  if (isPlaying) audio.play();
+  if (isPlaying) {
+    audio.play();
+    updateTextDisplay(); // Ensure text shows correct state
+  }
 };
 
 prevBtn.onclick = () => {
-  // Add visual click feedback
-  prevBtn.style.transform = 'scale(0.9)';
+  prevBtn.style.transform = 'translateY(-50%) translateY(1px)';
   setTimeout(() => {
-    prevBtn.style.transform = '';
+    prevBtn.style.transform = 'translateY(-50%)';
   }, 100);
   
   currentIndex = (currentIndex - 1 + songs.length) % songs.length;
   updateUI();
-  if (isPlaying) audio.play();
+  if (isPlaying) {
+    audio.play();
+    updateTextDisplay(); // Ensure text shows correct state
+  }
 };
 
 loadSongs();

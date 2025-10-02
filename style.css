@@ -5,7 +5,7 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  font-family: 'Pixelify Sans', sans-serif;
+  font-family: 'Bytesized', monospace; /* Back to Bytesized font */
   image-rendering: pixelated; /* Important for pixel art */
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
@@ -15,14 +15,27 @@ body {
   position: relative;
   width: 300px;
   height: 300px;
-  background: url('assets/background.png') no-repeat;
-  background-size: 300px 300px;
   margin: 0;
   z-index: 0; /* Base layer */
 }
 
+/* Background should be applied as a pseudo-element to control layering */
+.mp3::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('assets/mp3-components/background.png') no-repeat;
+  background-size: 300px 300px;
+  z-index: 2; /* Above album but below other elements */
+  pointer-events: none;
+}
+
 
 /* Screen overlay - 300x300 positioned over background */
+/* Commented out since screen.png doesn't exist
 .screen-overlay {
   position: absolute;
   top: 0;
@@ -31,9 +44,10 @@ body {
   height: 300px;
   background: url('assets/screen.png') no-repeat;
   background-size: 300px 300px;
-  pointer-events: none; /* KEEP - allows clicks to pass through to buttons below */
-  z-index: 1; /* Above background and album */
+  pointer-events: none;
+  z-index: 1;
 }
+*/
 
 /* Title box overlay - 300x300 positioned over background */
 .title-box {
@@ -42,35 +56,48 @@ body {
   left: 0;
   width: 300px;
   height: 300px;
-  background: url('assets/title_box.png') no-repeat;
+  background: url('assets/mp3-components/title_box.png') no-repeat;
   background-size: 300px 300px;
   pointer-events: none; /* KEEP - allows clicks to pass through to buttons below */
-  z-index: 2; /* Above screen and background */
+  z-index: 3; /* Above background pseudo-element */
 }
 
-/* Style the marquee text inside title box */
-.title-box marquee {
-  font-family: 'Pixelify Sans', sans-serif;
-  font-size: 12px;
+/* Style the text inside title box */
+.title-box #song-info {
+  font-family: 'Bytesized', monospace; /* Back to Bytesized font */
+  font-size: 20px; 
   font-weight: 700;
-  color: #333;
-  width: 180px; /* Adjust based on your title box text area */
+  color: #6e4250;
+  width: 125px; 
+  height: 25px; 
   position: absolute;
-  top: 50px; /* Adjust to position text correctly in title box area */
-  left: 60px; /* Adjust to center text in title box area */
+  top: 128px; 
+  left: 125px; 
+  line-height: 1.2;
+  overflow: hidden;
+  white-space: nowrap; /* Prevent text wrapping when static */
+}
+
+/* Style for marquee when playing */
+.title-box #song-info marquee {
+  font-family: 'Bytesized', monospace; /* Back to Bytesized font */
+  font-size: 20px; 
+  font-weight: 700;
+  color: #9e7767;
   line-height: 1.2;
 }
 
 .album {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 300px;
-  height: 300px;
-  background-size: 300px 300px;
+  top: 122px; /* Position to match album cover area in your design */
+  left: 28px; /* Position to match album cover area in your design */
+  width: 70px; 
+  height: 70px; /* 15x15 pixels scaled to 60x60 display */
+  background-size: 100%; /* Expand cover picture to 105% */
+  background-repeat: no-repeat;
+  background-position: center; /* Center the expanded image */
   image-rendering: pixelated;
-  /* pointer-events: none; REMOVED - album could be clickable if needed */
-  z-index: 3; /* Put album behind background.png but above web background */
+  z-index: 1; /* Behind background pseudo-element (2) but above base */
 }
 
 .controls {
@@ -95,64 +122,63 @@ body {
 
 /* Previous button - positioned at left */
 .prev-button {
-  top: 0;
-  left: 0px;
-  width: 100px; /* Limit clickable area to left side only */
-  height: 300px;
-  overflow: hidden; /* Hide overflow to prevent covering other areas */
-  z-index: 11; /* Same level as others */
+  top: 178px;
+  left: 115px; /* Position from left edge */
+  width: 25px; /* Actual button size */
+  height: 35px;
+  transform: translateY(-50%); 
+  z-index: 11;
 }
 
 .prev-button img {
-  width: 300px;
-  height: 300px;
+  width: 25px;
+  height: 35px;
   image-rendering: pixelated;
-  position: relative;
-  left: 0; /* Keep image positioned normally */
 }
 
 /* Play/Pause button - centered */
 .play-button {
-  top: 0;
-  left: 100px; /* Position clickable area in center */
-  width: 100px; /* Limit clickable area to center only */
-  height: 300px;
-  overflow: hidden; /* Hide overflow to prevent covering other areas */
-  z-index: 11; /* Same level as others */
+  top: 180px; 
+  left: 182px; /* Center horizontally */
+  width: 35px; /* Actual button size */
+  height: 30px;
+  transform: translate(-50%, -50%); /* Center both ways */
+  z-index: 11;
 }
 
 .play-button img {
-  width: 300px;
-  height: 300px;
+  width: 35px;
+  height: 30px;
   image-rendering: pixelated;
-  position: relative;
-  left: -100px; /* Offset image to show center part */
 }
 
 /* Next button - positioned at right */
 .next-button {
-  top: 0;
-  left: 200px; /* Position clickable area on right side */
-  width: 100px; /* Limit clickable area to right side only */
-  height: 300px;
-  overflow: hidden; /* Hide overflow to prevent covering other areas */
-  z-index: 11; /* Same level as others */
+  top: 178px; 
+  right: 45px; 
+  width: 25px;
+  height: 35px;
+  transform: translateY(-50%); 
+  z-index: 11;
 }
 
 .next-button img {
-  width: 300px;
-  height: 300px;
+  width: 25px;
+  height: 35px;
   image-rendering: pixelated;
-  position: relative;
-  left: -200px; /* Offset image to show right part */
 }
 
-/* Hover effects */
-.controls button:hover {
-  transform: scale(1.02);
+/* Subtle hover effects - maintain original transforms */
+.prev-button:hover {
+  transform: translateY(-50%) translateY(-1px);
 }
 
-/* Click animation */
-.controls button:active {
-  transform: scale(0.96);
+.play-button:hover {
+  transform: translate(-50%, -50%) translateY(-1px);
 }
+
+.next-button:hover {
+  transform: translateY(-50%) translateY(-1px);
+}
+
+/* JavaScript handles click animations */
