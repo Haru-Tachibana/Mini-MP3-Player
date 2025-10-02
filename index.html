@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <title>Pixel MP3 Player</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="mp3">
+    <!-- Background layer (300x300) -->
+    
+    <!-- Screen overlay (300x300) -->
+    <div class="screen-overlay"></div>
+    
+    <!-- Title box overlay (300x300) -->
+    <div class="title-box">
+      <marquee behavior="scroll" direction="left" id="song-info">Loading...</marquee>
+    </div>
+    
+    <!-- Album cover overlay (300x300) -->
+    <div class="album" id="album"></div>
+
+    <!-- Controls overlay (300x300) -->
+    <div class="controls">
+      <button id="prevBtn" class="prev-button"><img src="assets/button_previous.png" alt="Previous"></button>
+      <button id="playBtn" class="play-button"><img id="playIcon" src="assets/button_play_pause.png" alt="Play"></button>
+      <button id="nextBtn" class="next-button"><img src="assets/button_next.png" alt="Next"></button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

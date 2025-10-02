@@ -1,0 +1,20 @@
+[
+  {
+    "title": "LOCK YOUR GAZE",
+    "artist": "MODE/D",
+    "cover": "assets/albumn_cover.png",
+    "file": "audio/LOCK YOUR GAZE.mp3"
+  },
+  {
+    "title": "Dreamscape",
+    "artist": "Chiptune Cats",
+    "cover": "assets/albumn_cover.png",
+    "file": "audio/Dreamscape.mp3"
+  },
+  {
+    "title": "Evening Glow",
+    "artist": "Retro Beats",
+    "cover": "assets/albumn_cover.png",
+    "file": "audio/Evening Glow.mp3"
+  }
+]

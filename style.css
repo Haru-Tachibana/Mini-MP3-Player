@@ -1,0 +1,158 @@
+body {
+  background-color: #fdf6e3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Pixelify Sans', sans-serif;
+  image-rendering: pixelated; /* Important for pixel art */
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+.mp3 {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  background: url('assets/background.png') no-repeat;
+  background-size: 300px 300px;
+  margin: 0;
+  z-index: 0; /* Base layer */
+}
+
+
+/* Screen overlay - 300x300 positioned over background */
+.screen-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  background: url('assets/screen.png') no-repeat;
+  background-size: 300px 300px;
+  pointer-events: none; /* KEEP - allows clicks to pass through to buttons below */
+  z-index: 1; /* Above background and album */
+}
+
+/* Title box overlay - 300x300 positioned over background */
+.title-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  background: url('assets/title_box.png') no-repeat;
+  background-size: 300px 300px;
+  pointer-events: none; /* KEEP - allows clicks to pass through to buttons below */
+  z-index: 2; /* Above screen and background */
+}
+
+/* Style the marquee text inside title box */
+.title-box marquee {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #333;
+  width: 180px; /* Adjust based on your title box text area */
+  position: absolute;
+  top: 50px; /* Adjust to position text correctly in title box area */
+  left: 60px; /* Adjust to center text in title box area */
+  line-height: 1.2;
+}
+
+.album {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  background-size: 300px 300px;
+  image-rendering: pixelated;
+  /* pointer-events: none; REMOVED - album could be clickable if needed */
+  z-index: 3; /* Put album behind background.png but above web background */
+}
+
+.controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  z-index: 10; /* Put controls on top of everything */
+  /* Remove flex - position buttons individually */
+}
+
+.controls button {
+  position: absolute;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  image-rendering: pixelated;
+  transition: transform 0.1s ease; /* Smooth animation */
+}
+
+/* Previous button - positioned at left */
+.prev-button {
+  top: 0;
+  left: 0px;
+  width: 100px; /* Limit clickable area to left side only */
+  height: 300px;
+  overflow: hidden; /* Hide overflow to prevent covering other areas */
+  z-index: 11; /* Same level as others */
+}
+
+.prev-button img {
+  width: 300px;
+  height: 300px;
+  image-rendering: pixelated;
+  position: relative;
+  left: 0; /* Keep image positioned normally */
+}
+
+/* Play/Pause button - centered */
+.play-button {
+  top: 0;
+  left: 100px; /* Position clickable area in center */
+  width: 100px; /* Limit clickable area to center only */
+  height: 300px;
+  overflow: hidden; /* Hide overflow to prevent covering other areas */
+  z-index: 11; /* Same level as others */
+}
+
+.play-button img {
+  width: 300px;
+  height: 300px;
+  image-rendering: pixelated;
+  position: relative;
+  left: -100px; /* Offset image to show center part */
+}
+
+/* Next button - positioned at right */
+.next-button {
+  top: 0;
+  left: 200px; /* Position clickable area on right side */
+  width: 100px; /* Limit clickable area to right side only */
+  height: 300px;
+  overflow: hidden; /* Hide overflow to prevent covering other areas */
+  z-index: 11; /* Same level as others */
+}
+
+.next-button img {
+  width: 300px;
+  height: 300px;
+  image-rendering: pixelated;
+  position: relative;
+  left: -200px; /* Offset image to show right part */
+}
+
+/* Hover effects */
+.controls button:hover {
+  transform: scale(1.02);
+}
+
+/* Click animation */
+.controls button:active {
+  transform: scale(0.96);
+}
